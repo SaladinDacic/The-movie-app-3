@@ -1,0 +1,10 @@
+.Movies {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  grid-gap: 1%;
+  img {
+    width: 100%;
+    cursor: pointer;
+  }
+}

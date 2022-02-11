@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import { Routes, Route } from "react-router-dom";
+import { Landing } from "./Pages";
+import { MovieDetail } from "./Pages/MovieDetail";
+import { SerieDetail } from "./Pages/SerieDetail";
+import { useState } from "react";
 
 function App() {
+  const [searchInputString, setSearchInputString] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route
+          path="/*"
+          element={
+            <Landing
+              searchInputString={searchInputString}
+              loading={loading}
+              setLoading={setLoading}
+              setSearchInputString={setSearchInputString}
+            />
+          }
+        />
+        <Route path="/movie-details/:id" element={<MovieDetail />} />
+        <Route path="/serie-details/:id" element={<SerieDetail />} />
+      </Routes>
     </div>
   );
 }
