@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDetail } from "../../Api";
+import { DoughnutChart } from "../../Components/ChartJS/DoughnutChart";
 import "./MovieDetail.scss";
 interface DetailedMovieInterface {
   adult: boolean;
@@ -67,7 +68,7 @@ export const MovieDetail = () => {
           <h1>{movieDetail?.release_date}</h1>
         </div>
         <div className="MovieDetail__textContainer--chart">
-          <h1>{"chart"}</h1>
+          <DoughnutChart vote={80} />
         </div>
         <div className="MovieDetail__textContainer--desc">
           <h3>{movieDetail?.tagline}</h3>
