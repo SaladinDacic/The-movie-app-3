@@ -10,14 +10,13 @@ export const DoughnutChart = ({ vote }: { vote: number }) => {
         data: [vote, 100 - vote],
         backgroundColor: ["#21d07a", "#1a3c27"],
         borderColor: "#4fbf98",
-        // borderJoinStyle: "bevel",
-        borderAlign: "inner",
+        hoverOffset: 5,
       },
     ],
-  };
-  const config = {
-    type: "doughnut",
-    data: data,
+    options: {
+      tooltips: { enabled: false },
+      hover: { mode: "show" },
+    },
   };
   return <Doughnut className="DoughnutChart" data={data as any} />;
 };

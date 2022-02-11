@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSerieDetail as getSerieDetail } from "../../Api";
 import "./SerieDetail.scss";
+import { DoughnutChart } from "../../Components";
 interface DetailedSerieInterface {
   adult: boolean;
   backdrop_path: string;
@@ -78,7 +79,9 @@ export const SerieDetail = () => {
           <h1>{serieDetail?.first_air_date}</h1>
         </div>
         <div className="SerieDetail__textContainer--chart">
-          <h1>{"chart"}</h1>
+          {serieDetail && (
+            <DoughnutChart vote={serieDetail.vote_average * 10} />
+          )}
         </div>
         <div className="SerieDetail__textContainer--desc">
           <h3>{serieDetail?.tagline}</h3>
