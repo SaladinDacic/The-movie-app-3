@@ -19,12 +19,16 @@ interface MovieObjProps {
   vote_average: number;
   vote_count: number;
 }
-export const Movies = ({ setLoading, searchInputString }: HeaderProps) => {
+interface MovieProps {
+  showLoader: (loader: boolean) => void;
+  searchInputString: string;
+}
+export const Movies = ({ showLoader, searchInputString }: MovieProps) => {
   const [movieListData, setMovieListData] = useState<MovieObjProps[]>();
   useEffect(() => {
     let str = searchInputString;
     (async function fillListOfData() {
-      setLoading(true);
+      showLoader(true);
       if (str && str.length > 3) {
         let response = await getListOfMoviesUsingString(str);
         setMovieListData(response.data.results);
@@ -32,7 +36,7 @@ export const Movies = ({ setLoading, searchInputString }: HeaderProps) => {
         let response = await getListOfMovies();
         setMovieListData(response.data.results);
       }
-      setLoading(false);
+      showLoader(false);
     })();
   }, [searchInputString]);
 

@@ -3,13 +3,12 @@ import "./Header.scss";
 
 export interface HeaderProps {
   loading?: boolean;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  setSearchInputString: React.Dispatch<React.SetStateAction<string>>;
+  onSearch: (search: string) => void;
   searchInputString: string;
 }
 export const Header = ({
   loading,
-  setSearchInputString,
+  onSearch,
   searchInputString,
 }: HeaderProps) => {
   return (
@@ -27,7 +26,7 @@ export const Header = ({
         <div className="Header__search--inputAndIcon">
           <input
             onChange={(evt) => {
-              setSearchInputString(evt.target.value);
+              onSearch(evt.target.value);
             }}
             name="search"
             value={searchInputString}
